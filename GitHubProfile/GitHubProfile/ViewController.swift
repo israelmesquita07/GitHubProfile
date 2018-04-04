@@ -16,13 +16,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib...
     }
-
     
-    @IBAction func search(_ sender: UIButton) {
-        let username = txtUserName.text
-        print(username!)
-        hideKeyboard()
-        txtUserName.text = ""
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let profileDetailViewController = segue.destination as! ProfileDetailTableViewController
+        
+        if let username = txtUserName.text {
+            profileDetailViewController.username = username
+            hideKeyboard()
+            txtUserName.text = ""
+        }
     }
     
     
