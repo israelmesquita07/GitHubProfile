@@ -61,12 +61,19 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YqK-QI-sDh">
-                                    <rect key="frame" x="67" y="24" width="240" height="128"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJ8-Tk-GFx">
+                                    <rect key="frame" x="82" y="139" width="211" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YqK-QI-sDh">
+                                    <rect key="frame" x="82" y="21" width="211" height="104"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="42"/>
+                                            <integer key="value" value="50"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
@@ -88,10 +95,14 @@
                             <outlet property="delegate" destination="3mn-qF-yyB" id="8dD-a0-TLf"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="lblUser" destination="iJ8-Tk-GFx" id="5BQ-Ub-qAW"/>
+                        <outlet property="userImageView" destination="YqK-QI-sDh" id="u6T-AF-gLd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujG-xS-Blz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1452" y="6"/>
+            <point key="canvasLocation" x="1452" y="5.8470764617691158"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aCk-SD-566">

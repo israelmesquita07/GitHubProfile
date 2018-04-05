@@ -12,11 +12,9 @@ class UserProfile {
     
     var image: UIImage!
     var name: String!
-    var projects: [ProjectDetail]!
     
-    init(image: UIImage, name: String, projects:[ProjectDetail]) {
+    init(image: UIImage, name: String) {
         self.image = image
         self.name = name
-        self.projects = projects
     }
 }

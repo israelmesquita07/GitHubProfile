@@ -10,10 +10,20 @@ import UIKit
 
 class ProfileDetailTableViewController: UITableViewController {
 
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var lblUser: UILabel!
+    
     var username: String!
+    var userprofile: UserProfile!
+    var projectDetails: [ProjectDetail] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
         //jeremy
         if let url = URL(string: "https://api.github.com/users/\(username!)/repos") {
             let task = URLSession.shared.dataTask(with: url, completionHandler: { (dataRtd, res, error) in
@@ -23,7 +33,23 @@ class ProfileDetailTableViewController: UITableViewController {
                         do {
                             
                             if let objJson =  try JSONSerialization.jsonObject(with: data, options:[]) as? NSArray {
-                                print(objJson)
+                               // print(objJson)
+                                
+                                var i = 0
+                                var projects:[String:Any] = [:]
+                                while objJson.count > i {
+                                    projects = (objJson[i] as? [String: Any])!
+                                    let project = ProjectDetail(titulo: (projects["name"] as? String ?? "Project")!, descricao: (projects["language"] as? String ?? "Language")!)
+                                    self.projectDetails.append(project)
+                                    i+=1
+                                }
+                                let name = projects["owner"] as? [String: Any]
+                                let user = UserProfile(image: #imageLiteral(resourceName: "moeda_coroa"), name: name!["login"] as? String ?? "Name")
+                                
+                                DispatchQueue.main.async {
+                                    self.lblUser.text = user.name
+                                    self.userImageView.image = user.image
+                                }
                             }
                             
                         }catch {
@@ -39,10 +65,6 @@ class ProfileDetailTableViewController: UITableViewController {
             })
             task.resume()
         }
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
     }
 
     func showAlertMessage(title: String, message: String) {
@@ -55,13 +77,14 @@ class ProfileDetailTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
