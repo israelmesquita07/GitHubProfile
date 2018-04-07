@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileDetailTableViewController: UITableViewController {
     
-    @IBOutlet weak var userImageView: UIImageView! //reparar na cor da view
+    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var lblUser: UILabel!
     
     var username: String!
@@ -18,58 +18,25 @@ class ProfileDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.returnGitUsers()
-    }
-    
-    func returnGitUsers() {
-        
-        if let url = URL(string: "https://api.github.com/users/\(username!)/repos") {
-            let task = URLSession.shared.dataTask(with: url, completionHandler: { (dataRtd, res, error) in
-                if error == nil {
-                    if let data = dataRtd {
-                        
-                        do {
-                            
-                            if let objJson =  try JSONSerialization.jsonObject(with: data, options:[]) as? NSArray {
-                                
-                                var i = 0
-                                var projects:[String:Any] = [:]
-                                while objJson.count > i {
-                                    projects = (objJson[i] as? [String: Any])!
-                                    let project = ProjectDetail(titulo: (projects["name"] as? String ?? "Project")!, descricao: (projects["language"] as? String ?? "Language")!)
-                                    self.projectDetails.append(project)
-                                    i+=1
-                                }
-                                
-                                let imageMother = projects["owner"] as? [String: Any]
-                                let imagemurl = imageMother!["avatar_url"] as? String
-                                let urlImage = URL(string: imagemurl!) //fazer if caso nao tenha avatar
-                                let dataImage = try? Data(contentsOf: urlImage!)
-                                
-                                let user = UserProfile(image: UIImage(data: dataImage!) ?? #imageLiteral(resourceName: "moeda_coroa"), name: self.username) //reparar
-                                
-                                DispatchQueue.main.async {
-                                    self.lblUser.text = user.name
-                                    self.userImageView.image = user.image
-                                    self.tableView.reloadData()
-                                }
-                            }
-                            
-                        }catch {
-                            self.showAlertMessage(title: "Error", message: "Some error msg!") //ver msgs de erro
-                        }
-                        
-                    } else {
-                        self.showAlertMessage(title: "Error", message: "User not found. Please enter another name") //ver msgs de erro
-                    }
-                } else {
-                    self.showAlertMessage(title: "Error", message: "A network error has occurred. Check your Internet connection and try again later.")
-                }
-            })
-            task.resume()
+        REST.returnGitUser(username: username, onComplete: { (userProfile, projectDetail) in
+            self.projectDetails = projectDetail
+            DispatchQueue.main.async {
+                self.lblUser.text = userProfile.name
+                self.userImageView.image = userProfile.image
+                self.tableView.reloadData()
+            }
+        }) { (error) in
+            switch error{
+            case .noInternetConnection:
+                self.showAlertMessage(title: "Error", message: "A network error has occurred. Check your Internet connection and try again later.")
+            case .userNotFound:
+                self.showAlertMessage(title: "Error", message: "User not found. Please enter another name")
+            }
+            DispatchQueue.main.async {
+                self.lblUser.text = "😰"
+            }
         }
     }
-    
     
     func showAlertMessage(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

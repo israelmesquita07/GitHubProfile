@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var txtUserName: UITextField!
     
     override func viewDidLoad() {
@@ -27,7 +27,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     func hideKeyboard() {
         view.endEditing(true)
     }
@@ -39,7 +38,7 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-
+    
+    
 }
 

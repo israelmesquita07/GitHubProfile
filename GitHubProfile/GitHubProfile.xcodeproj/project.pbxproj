@@ -15,6 +15,7 @@
 		075FABFA206F14140049AFCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 075FABF8206F14140049AFCF /* Main.storyboard */; };
 		075FABFC206F14150049AFCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 075FABFB206F14150049AFCF /* Assets.xcassets */; };
 		075FABFF206F14150049AFCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 075FABFD206F14150049AFCF /* LaunchScreen.storyboard */; };
+		07AFD98C2079206600E228A0 /* REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AFD98B2079206600E228A0 /* REST.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		075FABFB206F14150049AFCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		075FABFE206F14150049AFCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		075FAC00206F14150049AFCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07AFD98B2079206600E228A0 /* REST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = REST.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				075FABF4206F14140049AFCF /* AppDelegate.swift */,
+				07AFD98B2079206600E228A0 /* REST.swift */,
 				071276142075264A00520A6B /* ProjectDetails.swift */,
 				071276122075254E00520A6B /* UserProfile.swift */,
 				071276102075165000520A6B /* ProfileDetailTableViewController.swift */,
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				071276132075254E00520A6B /* UserProfile.swift in Sources */,
+				07AFD98C2079206600E228A0 /* REST.swift in Sources */,
 				071276112075165000520A6B /* ProfileDetailTableViewController.swift in Sources */,
 				075FABF7206F14140049AFCF /* ViewController.swift in Sources */,
 				071276152075264A00520A6B /* ProjectDetails.swift in Sources */,
