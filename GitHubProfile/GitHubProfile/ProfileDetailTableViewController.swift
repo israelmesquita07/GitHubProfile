@@ -10,11 +10,10 @@ import UIKit
 
 class ProfileDetailTableViewController: UITableViewController {
     
-    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userImageView: UIImageView! //reparar na cor da view
     @IBOutlet weak var lblUser: UILabel!
     
     var username: String!
-    var userprofile: UserProfile! //reparar
     var projectDetails: [ProjectDetail] = []
     
     override func viewDidLoad() {
@@ -57,11 +56,11 @@ class ProfileDetailTableViewController: UITableViewController {
                             }
                             
                         }catch {
-                            
+                            self.showAlertMessage(title: "Error", message: "Some error msg") //ver msgs de erro
                         }
                         
                     } else {
-                        self.showAlertMessage(title: "Error", message: "User not found. Please enter another name")
+                        self.showAlertMessage(title: "Error", message: "User not found. Please enter another name") //ver msgs de erro
                     }
                 } else {
                     self.showAlertMessage(title: "Error", message: "A network error has occurred. Check your Internet connection and try again later.")
