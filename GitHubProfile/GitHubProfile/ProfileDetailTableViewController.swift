@@ -56,7 +56,7 @@ class ProfileDetailTableViewController: UITableViewController {
                             }
                             
                         }catch {
-                            self.showAlertMessage(title: "Error", message: "Some error msg") //ver msgs de erro
+                            self.showAlertMessage(title: "Error", message: "Some error msg!") //ver msgs de erro
                         }
                         
                     } else {
