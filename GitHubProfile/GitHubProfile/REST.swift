@@ -30,7 +30,7 @@ class REST {
                                 var projectDetails: [ProjectDetail] = []
                                 while objJson.count > i {
                                     projects = (objJson[i] as? [String: Any])!
-                                    let project = ProjectDetail(titulo: (projects["name"] as? String ?? "Project")!, descricao: (projects["language"] as? String ?? "Language")!)
+                                    let project = ProjectDetail(titulo: (projects["name"] as? String ?? "Project Name")!, descricao: (projects["language"] as? String ?? "No Language")!)
                                     projectDetails.append(project)
                                     i+=1
                                 }
@@ -39,7 +39,7 @@ class REST {
                                 let urlImage = URL(string:(imageMother!["avatar_url"] as? String)!)
                                 let dataImage = try? Data(contentsOf: urlImage!)
                                 
-                                let user = UserProfile(image: UIImage(data: dataImage!) ?? #imageLiteral(resourceName: "moeda_coroa"), name: username)
+                                let user = UserProfile(image: UIImage(data: dataImage!) ?? #imageLiteral(resourceName: "user_default"), name: username)
                                 
                                 onComplete(user, projectDetails)
                                 
